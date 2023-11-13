@@ -39,11 +39,12 @@ class IdentifierTransformationTest {
 
     @org.junit.jupiter.api.Test
     void snakeCaseIdentifierToCamelCase_cas_trait_multiple_successifs() {
-        String snake_case = "trait___multiples_successifs__";
+        String snake_case = "___trait___multiples_successifs__";
 
         String attendu = "traitMultiplesSuccessifs";
 
         String resultat = IdentifierTransformation.snakeCaseIdentifierToCamelCase(snake_case);
+        System.out.println(resultat);
 
         assertTrue(attendu.equals(resultat));
     }

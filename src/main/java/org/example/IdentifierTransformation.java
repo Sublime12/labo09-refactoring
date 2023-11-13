@@ -14,7 +14,13 @@ public final class IdentifierTransformation {
         char[] workString = identifier.toLowerCase().toCharArray();
 
         boolean firstCharacterMet = false;
-        for (int charIndex = 0; charIndex < workString.length; charIndex++) {
+
+        int debut = 0;
+        while (debut < workString.length && workString[debut] == '_') debut++;
+
+        debut++;
+
+        for (int charIndex = debut; charIndex < workString.length; charIndex++) {
             if (workString[charIndex] == '_' && firstCharacterMet) {
                 if (charIndex < workString.length - 1) {
                     workString[charIndex + 1] = Character.toUpperCase(workString[charIndex + 1]);

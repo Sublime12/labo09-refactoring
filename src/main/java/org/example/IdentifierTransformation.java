@@ -11,25 +11,23 @@ public final class IdentifierTransformation {
     }
 
     public static String snakeCaseIdentifierToCamelCase(String identifier) {
-        char[] workString = identifier.toLowerCase().toCharArray();
+        char[] camelCase = identifier.toLowerCase().toCharArray();
 
-        boolean firstCharacterMet = false;
+        int start = 0;
+        while (start < camelCase.length && camelCase[start] == '_') start++;
 
-        int debut = 0;
-        while (debut < workString.length && workString[debut] == '_') debut++;
+        start++;
 
-        debut++;
-
-        for (int charIndex = debut; charIndex < workString.length; charIndex++) {
-            if (workString[charIndex] == '_' && firstCharacterMet) {
-                if (charIndex < workString.length - 1) {
-                    workString[charIndex + 1] = Character.toUpperCase(workString[charIndex + 1]);
-                }
-            } else {
-                firstCharacterMet = true;
+        for (int charIndex = start; charIndex < camelCase.length; charIndex++) {
+            if (camelCase[charIndex] == '_' &&  !is_last_char(charIndex, camelCase)) {
+                camelCase[charIndex + 1] = Character.toUpperCase(camelCase[charIndex + 1]);
             }
         }
 
-        return new String(workString).replace("_", "");
+        return new String(camelCase).replace("_", "");
+    }
+
+    public static boolean is_last_char(int index, char[] characters) {
+        return index == characters.length - 1;
     }
 }

@@ -4,10 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class IdentifierTransformationTest {
 
-//    @org.junit.jupiter.api.Test
-//    void snakeCaseIdentifierToPascalCase() {
-//    }
-
     @org.junit.jupiter.api.Test
     void snakeCaseIdentifierToCamelCase_simple_cas() {
         String snake_case = "first_snake_case";
@@ -59,6 +55,52 @@ class IdentifierTransformationTest {
         String attendu = "";
 
         String resultat = IdentifierTransformation.snakeCaseIdentifierToCamelCase(snake_case);
+
+        assertTrue(attendu.equals(resultat));
+    }
+
+
+    @org.junit.jupiter.api.Test
+    void snakeCaseIdentifierToPascalCase_cas_simple() {
+        String snake_case = "snake_case";
+
+        String attendu = "SnakeCase";
+
+        String resultat = IdentifierTransformation.snakeCaseIdentifierToPascalCase(snake_case);
+
+        assertTrue(attendu.equals(resultat));
+    }
+
+
+    @org.junit.jupiter.api.Test
+    void snakeCaseIdentifierToPascalCase_cas_variable_constante() {
+        String snake_case = "MA_CONSTANTE_JAVA";
+
+        String attendu = "MaConstanteJava";
+
+        String resultat = IdentifierTransformation.snakeCaseIdentifierToPascalCase(snake_case);
+
+        assertTrue(attendu.equals(resultat));
+    }
+
+    @org.junit.jupiter.api.Test
+    void snakeCaseIdentifierToPascalCase_cas_commence_par_traits() {
+        String snake_case = "_debute_par_traits";
+
+        String attendu = "DebuteParTraits";
+
+        String resultat = IdentifierTransformation.snakeCaseIdentifierToPascalCase(snake_case);
+
+        assertTrue(attendu.equals(resultat));
+    }
+
+    @org.junit.jupiter.api.Test
+    void snakeCaseIdentifierToPascalCase_contient_plusieurs_traits() {
+        String snake_case = "__contient_plusieurs___traits_variable___";
+
+        String attendu = "ContientPlusieursTraitsVariable";
+
+        String resultat = IdentifierTransformation.snakeCaseIdentifierToPascalCase(snake_case);
 
         assertTrue(attendu.equals(resultat));
     }
